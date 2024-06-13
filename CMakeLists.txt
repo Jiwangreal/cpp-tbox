@@ -92,6 +92,10 @@ option(TBOX_ENABLE_DBUS "build dbus" ON)
 #
 option(TBOX_ENABLE_NLOHMANN_JSON "install nlohmann/json" ON)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rd-party/libgtest-dev_1.10.0-2_amd64/usr/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rd-party/libgmock-dev_1.10.0-2_amd64/usr/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rd-party/libmosquitto-dev_1.6.9-1_amd64/usr/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rd-party/libdbus-1-dev_1.12.16-2ubuntu2.3_amd64/usr/include/dbus-1.0)
 #
 # TESTS
 #
@@ -99,7 +103,10 @@ option(CMAKE_ENABLE_TEST "Whether to enable unit tests" ON)
 
 if(CMAKE_ENABLE_TEST)
     message(STATUS "Unit tests enabled")
-    find_package(GTest REQUIRED)
+    # find_package(GTest REQUIRED)
+    find_library(GTEST_LIB NAMES gtest HINTS ${CMAKE_CURRENT_SOURCE_DIR}/3rd-party/libgtest-dev_1.10.0-2_amd64/usr/lib/x86_64-linux-gnu REQUIRED)
+    find_library(GTEST_MAIN_LIB NAMES gmock_main HINTS ${CMAKE_CURRENT_SOURCE_DIR}/3rd-party/libgmock-dev_1.10.0-2_amd64/usr/lib/x86_64-linux-gnu REQUIRED)
+    find_library(GMOCK_LIB NAMES gmock HINTS ${CMAKE_CURRENT_SOURCE_DIR}/3rd-party/libgmock-dev_1.10.0-2_amd64/usr/lib/x86_64-linux-gnu REQUIRED)
     set(TBOX_ENABLE_TEST ON)
     enable_testing()
 endif()
@@ -111,7 +118,8 @@ include(GNUInstallDirs)
 #
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
-add_compile_options(-Wall -Wextra -Werror -Wno-missing-field-initializers)
+# add_compile_options(-Wall -Wextra -Werror -Wno-missing-field-initializers)
+add_compile_options(-Wall -Wextra -Wno-missing-field-initializers)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rd-party)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/modules)

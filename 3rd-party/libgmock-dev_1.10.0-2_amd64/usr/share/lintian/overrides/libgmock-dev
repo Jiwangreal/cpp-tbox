@@ -1,0 +1,4 @@
+# Lintian complains about the pkg-config files Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=1 -lpthread
+# The pthread stuff is required to get the client code linked correctly; see patch file
+# inconsistency-with-GTEST_HAS_PTHREAD-in-library-inte.patch
+libgmock-dev: pkg-config-bad-directive 

@@ -78,22 +78,22 @@
 
 ## 9. 有丰富的开发组件
 
-| 库名 | 中文名 | 说明 |
-|:----:|:---:|:----|
-| base | 基础库 | 含日志打印、常用工具等 |
-| util | 工具库 | 在业务代码中可能会用到的库 |
-| event | 事件库 | 实现了IO,Timer,Signal三种事件驱动,是整个框架的心脏 |
-| eventx | 事件扩展库 | 含 ThreadPool 线程池,WorkThread工作线程,TimerPool 定时器池等模块 |
-| log | 日志输出库 | 实现了终端、syslog、文件形式的日志输出 |
-| network | 网络库 | 实现了串口、终端、UDP、TCP 通信模块 |
-| terminal | 终端 | 类似shell的命令终端,可实现运行时与程序进行命令交互 |
-| **main** | 主框架 | 实现了完备的程序启动流程与框架,让开发者只需关心业务代码 |
-| run | 执行器 | 是个可执行程序，可加载多个由参数`-l xxx`指定的动态库，并运行其中的Module |
-| mqtt | MQTT客户端库 | |
-| coroutine | 协程库 | 众所周知,异步框架不方便处理顺序性业务,协程弥补之 |
-| http | HTTP库 | 在network的基础上实现了HTTP的Server与Client模块 |
-| alarm | 闹钟模块 | 实现了4种常用的闹钟:CRON闹钟、单次闹钟、星期循环闹钟、工作日闹钟 |
-| flow | 流程模块 | 含多层级状态机与行为树,解决异步模式下动行流程问题 |
+|   库名    |    中文名    | 说明                                                                     |
+| :-------: | :----------: | :----------------------------------------------------------------------- |
+|   base    |    基础库    | 含日志打印、常用工具等                                                   |
+|   util    |    工具库    | 在业务代码中可能会用到的库                                               |
+|   event   |    事件库    | 实现了IO,Timer,Signal三种事件驱动,是整个框架的心脏                       |
+|  eventx   |  事件扩展库  | 含 ThreadPool 线程池,WorkThread工作线程,TimerPool 定时器池等模块         |
+|    log    |  日志输出库  | 实现了终端、syslog、文件形式的日志输出                                   |
+|  network  |    网络库    | 实现了串口、终端、UDP、TCP 通信模块                                      |
+| terminal  |     终端     | 类似shell的命令终端,可实现运行时与程序进行命令交互                       |
+| **main**  |    主框架    | 实现了完备的程序启动流程与框架,让开发者只需关心业务代码                  |
+|    run    |    执行器    | 是个可执行程序，可加载多个由参数`-l xxx`指定的动态库，并运行其中的Module |
+|   mqtt    | MQTT客户端库 |                                                                          |
+| coroutine |    协程库    | 众所周知,异步框架不方便处理顺序性业务,协程弥补之                         |
+|   http    |    HTTP库    | 在network的基础上实现了HTTP的Server与Client模块                          |
+|   alarm   |   闹钟模块   | 实现了4种常用的闹钟:CRON闹钟、单次闹钟、星期循环闹钟、工作日闹钟         |
+|   flow    |   流程模块   | 含多层级状态机与行为树,解决异步模式下动行流程问题                        |
 
 # 适用环境
 
@@ -128,14 +128,10 @@ make 3rd-party modules RELEASE=1 STAGING_DIR=$HOME/.tbox
 
 ## 方法二：CMake
 ```
-cmake -B build
-cmake --build build
-cmake --install build
+cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=$HOME/.tbox
+cmake --build build  -j9 --target install
 ```
-通过指定`CMAKE_INSTALL_PREFIX` 自定义安装目录(默认安装在/usr/local):
-```
-cmake -B build -DCMAKE_INSTALL_PREFIX=$HOME/.tbox
-```
+
 
 # 使用教程
 关于如何使用 cpp-tbox 开发自己的程序，详见教程：
@@ -153,12 +149,12 @@ target_link_libraries(demo PRIVATE tbox::tbox_base tbox::tbox_util tbox::tbox_al
 
 # 外部库依赖
 
-| 库名 | 依赖模块 | 必需 | 说明 | 安装方法 |
-|:----:|:--------:|:--:| :----:|:--------:|
-| libgtest-dev | 所有 | 否 | 单元测试用 | sudo apt install libgtest-dev |
-| libgmock-dev | 所有 | 否 | 单元测试用 | sudo apt install libgmock-dev |
-| libmosquitto-dev | mqtt | no | MQTT | sudo apt install libmosquitto-dev |
-| libdbus-1-dev | dbus | no | DBus | sudo apt install libdbus-1-dev |
+|       库名       | 依赖模块 | 必需  |    说明    |             安装方法              |
+| :--------------: | :------: | :---: | :--------: | :-------------------------------: |
+|   libgtest-dev   |   所有   |  否   | 单元测试用 |   sudo apt install libgtest-dev   |
+|   libgmock-dev   |   所有   |  否   | 单元测试用 |   sudo apt install libgmock-dev   |
+| libmosquitto-dev |   mqtt   |  no   |    MQTT    | sudo apt install libmosquitto-dev |
+|  libdbus-1-dev   |   dbus   |  no   |    DBus    |  sudo apt install libdbus-1-dev   |
 
 # 配置
 你可以决定哪些模块需要构建，哪些不需要。  

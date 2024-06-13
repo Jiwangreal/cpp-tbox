@@ -70,7 +70,7 @@ set_target_properties(
 
 if(${TBOX_ENABLE_TEST})
     add_executable(${TBOX_LIBRARY_NAME}_test ${TBOX_TERMINAL_TEST_SOURCES})
-    target_link_libraries(${TBOX_LIBRARY_NAME}_test gmock_main gmock gtest pthread ${TBOX_LIBRARY_NAME} tbox_base tbox_util tbox_event tbox_network rt dl)
+    target_link_libraries(${TBOX_LIBRARY_NAME}_test ${GTEST_MAIN_LIB} ${GTEST_LIB} ${GMOCK_LIB} pthread ${TBOX_LIBRARY_NAME} tbox_base tbox_util tbox_event tbox_network rt dl)
     add_test(NAME ${TBOX_LIBRARY_NAME}_test COMMAND ${TBOX_LIBRARY_NAME}_test)
 endif()
 
