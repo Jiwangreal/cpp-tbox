@@ -36,34 +36,34 @@ extern "C" {
 
 //! 日志内容
 struct LogContent {
-    long thread_id;         //!< 线程ID
-    struct {
-        uint32_t sec;       //!< 秒
-        uint32_t usec;      //!< 微秒
-    } timestamp;            //!< 时间戳
+  long thread_id; //!< 线程ID
+  struct {
+    uint32_t sec;  //!< 秒
+    uint32_t usec; //!< 微秒
+  } timestamp;     //!< 时间戳
 
-    const char *module_id;  //!< 模块名
-    const char *func_name;  //!< 函数名
-    const char *file_name;  //!< 文件名
-    int         line;       //!< 行号
-    int         level;      //!< 日志等级
-    uint32_t    text_len;   //!< 内容大小
-    const char *text_ptr;   //!< 内容地址
+  const char *module_id; //!< 模块名
+  const char *func_name; //!< 函数名
+  const char *file_name; //!< 文件名
+  int line;              //!< 行号
+  int level;             //!< 日志等级
+  uint32_t text_len;     //!< 内容大小
+  const char *text_ptr;  //!< 内容地址
 };
 
 //! 日志等级颜色表
-extern const char   LOG_LEVEL_LEVEL_CODE[LOG_LEVEL_MAX];
-extern const char*  LOG_LEVEL_COLOR_CODE[LOG_LEVEL_MAX];
+extern const char LOG_LEVEL_LEVEL_CODE[LOG_LEVEL_MAX];
+extern const char *LOG_LEVEL_COLOR_CODE[LOG_LEVEL_MAX];
 
 //! 定义日志输出函数
 typedef void (*LogPrintfFuncType)(const LogContent *content, void *ptr);
 
 //! 添加与删除日志输出函数
 uint32_t LogAddPrintfFunc(LogPrintfFuncType func, void *ptr);
-bool     LogRemovePrintfFunc(uint32_t id);
+bool LogRemovePrintfFunc(uint32_t id);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif //TBOX_BASE_LOG_IMP_20180201
+#endif // TBOX_BASE_LOG_IMP_20180201

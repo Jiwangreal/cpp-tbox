@@ -44,6 +44,8 @@ set(TBOX_VERSION_REVISION ${CMAKE_MATCH_1})
 set(TBOX_VERSION ${TBOX_VERSION_MAJOR}.${TBOX_VERSION_MINOR}.${TBOX_VERSION_REVISION})
 
 
+# set(CMAKE_C_COMPILER gcc)
+# set(CMAKE_CXX_COMPILER g++)
 
 #
 # Set install prefix
@@ -120,6 +122,10 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 # add_compile_options(-Wall -Wextra -Werror -Wno-missing-field-initializers)
 add_compile_options(-Wall -Wextra -Wno-missing-field-initializers)
+
+
+message(STATUS "${CMAKE_CXX_COMPILER}")
+message(STATUS "${CMAKE_C_COMPILER}")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rd-party)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/modules)
